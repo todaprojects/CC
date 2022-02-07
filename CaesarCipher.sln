@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CaesarCipher", "CaesarCipher\CaesarCipher.csproj", "{C00A6DAE-B66D-4BAC-BB4D-BEF0912200E0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CaesarCipher.Tests", "CaesarCipher.Tests\CaesarCipher.Tests.csproj", "{8EE92BCB-1539-42E8-96D3-A156E1FE5907}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C00A6DAE-B66D-4BAC-BB4D-BEF0912200E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C00A6DAE-B66D-4BAC-BB4D-BEF0912200E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C00A6DAE-B66D-4BAC-BB4D-BEF0912200E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C00A6DAE-B66D-4BAC-BB4D-BEF0912200E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8EE92BCB-1539-42E8-96D3-A156E1FE5907}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8EE92BCB-1539-42E8-96D3-A156E1FE5907}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8EE92BCB-1539-42E8-96D3-A156E1FE5907}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8EE92BCB-1539-42E8-96D3-A156E1FE5907}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
