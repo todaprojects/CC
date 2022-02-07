@@ -18,13 +18,14 @@ namespace CaesarCipher.Tests
         [InlineData("z", "a", 27)]
         [InlineData("a", "z", -27)]
         [InlineData("z", "y", -27)]
-        [InlineData("treasure", "dbokcebo", 10)]
+        [InlineData("test", "paop", 100)]
+        [InlineData("test", "xiwx", -100)]
         public void Encrypt_ForTextInLowerCaseLetters_ReturnsEncryptedText(
             string plainText, string encryptedText, int encryptionKey)
         {
-            var caesarCipher = new CaesarCipher(plainText, encryptionKey);
+            var caesarCipher = new CaesarCipher(encryptionKey);
 
-            var result = caesarCipher.Encrypt();
+            var result = caesarCipher.Encrypt(plainText);
 
             result.Should().BeEquivalentTo(encryptedText);
         }
@@ -42,13 +43,14 @@ namespace CaesarCipher.Tests
         [InlineData("Z", "A", 27)]
         [InlineData("A", "Z", -27)]
         [InlineData("Z", "Y", -27)]
-        [InlineData("TREASURE", "DBOKCEBO", 10)]
+        [InlineData("TEST", "PAOP", 100)]
+        [InlineData("TEST", "XIWX", -100)]
         public void Encrypt_ForTextInUpperCaseLetters_ReturnsEncryptedText(
             string plainText, string encryptedText, int encryptionKey)
         {
-            var caesarCipher = new CaesarCipher(plainText, encryptionKey);
+            var caesarCipher = new CaesarCipher(encryptionKey);
 
-            var result = caesarCipher.Encrypt();
+            var result = caesarCipher.Encrypt(plainText);
 
             result.Should().BeEquivalentTo(encryptedText);
         }
@@ -60,9 +62,9 @@ namespace CaesarCipher.Tests
             const string encryptedText = "Ebiil .KBQ tloia 2022!";
             const int encryptionKey = 127;
 
-            var caesarCipher = new CaesarCipher(plainText, encryptionKey);
+            var caesarCipher = new CaesarCipher(encryptionKey);
 
-            var result = caesarCipher.Encrypt();
+            var result = caesarCipher.Encrypt(plainText);
 
             result.Should().BeEquivalentTo(encryptedText);
         }
@@ -80,13 +82,14 @@ namespace CaesarCipher.Tests
         [InlineData("a", "z", 27)]
         [InlineData("z", "a", -27)]
         [InlineData("y", "z", -27)]
-        [InlineData("dbokcebo!", "treasure!", 10)]
+        [InlineData("paop", "test", 100)]
+        [InlineData("xiwx", "test", -100)]
         public void Decrypt_ForTextInLowerCaseLetters_ReturnsDecryptedText(
             string encryptedText, string decryptedText, int decryptionKey)
         {
-            var caesarCipher = new CaesarCipher(encryptedText, decryptionKey);
+            var caesarCipher = new CaesarCipher(decryptionKey);
 
-            var result = caesarCipher.Decrypt();
+            var result = caesarCipher.Decrypt(encryptedText);
 
             result.Should().BeEquivalentTo(decryptedText);
         }
@@ -104,13 +107,14 @@ namespace CaesarCipher.Tests
         [InlineData("A", "Z", 27)]
         [InlineData("Z", "A", -27)]
         [InlineData("Y", "Z", -27)]
-        [InlineData("DBOKCEBO", "TREASURE", 10)]
+        [InlineData("PAOP", "TEST", 100)]
+        [InlineData("XIWX", "TEST", -100)]
         public void Decrypt_ForTextInUpperCaseLetters_ReturnsDecryptedText(
             string encryptedText, string decryptedText, int decryptionKey)
         {
-            var caesarCipher = new CaesarCipher(encryptedText, decryptionKey);
+            var caesarCipher = new CaesarCipher(decryptionKey);
 
-            var result = caesarCipher.Decrypt();
+            var result = caesarCipher.Decrypt(encryptedText);
 
             result.Should().BeEquivalentTo(decryptedText);
         }
@@ -122,9 +126,9 @@ namespace CaesarCipher.Tests
             const string decryptedText = "Hello .NET world 2022!";
             const int decryptionKey = 127;
 
-            var caesarCipher = new CaesarCipher(encryptedText, decryptionKey);
+            var caesarCipher = new CaesarCipher(decryptionKey);
 
-            var result = caesarCipher.Decrypt();
+            var result = caesarCipher.Decrypt(encryptedText);
 
             result.Should().BeEquivalentTo(decryptedText);
         }

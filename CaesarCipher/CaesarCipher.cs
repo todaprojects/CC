@@ -5,25 +5,32 @@ namespace CaesarCipher
 {
     public class CaesarCipher
     {
-        private readonly string _text;
+        private readonly int _numberOfAllLetters;
         private readonly int _chipperKey;
 
-        public CaesarCipher(string text, int chipperKey)
+        public CaesarCipher(int chipperKey)
         {
-            _text = text;
+            _numberOfAllLetters = AsciiLettersHelper.GetNumberOfAllLetters();
+
+            chipperKey %= _numberOfAllLetters;
+            if (chipperKey < 0)
+            {
+                chipperKey += _numberOfAllLetters;
+            }
+
             _chipperKey = chipperKey;
         }
 
-        public string Encrypt()
+        public string Encrypt(string text)
         {
-            var encryptedCharacters = _text.Select(c => ProcessEncryption(c)).ToArray();
+            var encryptedCharacters = text.Select(c => ProcessEncryption(c)).ToArray();
 
             return new string(encryptedCharacters);
         }
 
-        public string Decrypt()
+        public string Decrypt(string text)
         {
-            var decryptedCharacters = _text.Select(c => ProcessDecryption(c)).ToArray();
+            var decryptedCharacters = text.Select(c => ProcessDecryption(c)).ToArray();
 
             return new string(decryptedCharacters);
         }
@@ -37,33 +44,21 @@ namespace CaesarCipher
         {
             return character.IsLetter() ? DecryptLetter(character) : character;
         }
-        
+
         private char EncryptLetter(char plainLetter)
         {
-            var numberOfAllLetters = AsciiLettersHelper.GetNumberOfAllLetters();
             var firstLetter = plainLetter.GetAssociatedFirstLetter();
 
-            var shiftOfNumber = (plainLetter - firstLetter + _chipperKey) % numberOfAllLetters;
-            
-            if (shiftOfNumber < 0)
-            {
-                shiftOfNumber += numberOfAllLetters;
-            }
+            var shiftOfNumber = (plainLetter - firstLetter + _chipperKey) % _numberOfAllLetters;
 
             return (char)(firstLetter + shiftOfNumber);
         }
 
         private char DecryptLetter(char encryptedLetter)
         {
-            var numberOfAllLetters = AsciiLettersHelper.GetNumberOfAllLetters();
             var firstLetter = encryptedLetter.GetAssociatedFirstLetter();
 
-            var shiftOfNumber = (encryptedLetter - firstLetter - _chipperKey) % numberOfAllLetters;
-
-            if (shiftOfNumber < 0)
-            {
-                shiftOfNumber += numberOfAllLetters;
-            }
+            var shiftOfNumber = (encryptedLetter - firstLetter - _chipperKey + _numberOfAllLetters) % _numberOfAllLetters;
 
             return (char)(firstLetter + shiftOfNumber);
         }
